@@ -58,9 +58,9 @@ export class AppComponent implements OnInit {
     /**
      * My Interval Observable.
      */
-    // const myInterval$ =
+      // const myInterval$ =
 
-    // Empty observable: [|]
+      // Empty observable: [|]
     const empty$ = empty();
     // Of observable: [1|]
     const of$ = of(1);
