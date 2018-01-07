@@ -41,6 +41,61 @@ export class AppComponent implements OnInit {
     // Clear the output
     this.output$.next('');
 
+    /**
+     * My Empty Observable.
+     */
+    const myEmpty$ = Observable.create((observer) => {
+      observer.complete();
+    });
+
+    /**
+     * My Of Observable factory.
+     */
+    const myOf = (event) => Observable.create((observer) => {
+      observer.next(event);
+      observer.complete();
+    });
+
+    /**
+     * My Of Observable.
+     */
+    const myOf$ = myOf(1);
+
+    /**
+     * My From Observable factory.
+     */
+    const myFrom = (events: any[]) => Observable.create((observer) => {
+      events.forEach((event) => observer.next(event));
+      observer.complete();
+    });
+
+    /**
+     * My From Observable factory.
+     */
+    const myFrom$ = myFrom([1, 2, 3, 4]);
+
+    /**
+     * My From Observable factory.
+     */
+    const myInterval = (millis: number) => Observable.create((observer) => {
+      let counter = 1;
+      let interval;
+
+      interval = window.setInterval(() => {
+        this.println('interval-' + counter);
+        observer.next('observer-' + counter++);
+      }, millis);
+
+      return () => {
+        this.println('cleared');
+        window.clearInterval(interval);
+      };
+    });
+
+    /**
+     * My From Observable factory.
+     */
+    const myInterval$ = myInterval(1000);
 
     // Empty observable: [|]
     const empty$ = Observable.empty();
@@ -52,10 +107,10 @@ export class AppComponent implements OnInit {
     const interval$ = Observable.interval(1000);
 
     // subscribe
-    const subscription = empty$.subscribe(this.observer);
+    const subscription = myInterval$.subscribe(this.observer);
 
     // unsubscribe
-    // setTimeout(() => subscription.unsubscribe(), 5000);
+    setTimeout(() => subscription.unsubscribe(), 5000);
   }
 
   println(string) {
