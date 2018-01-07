@@ -1,0 +1,20 @@
+pre {
+  font-family: 'Source Code Pro', monospace;
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: white;
+  background-color: #1E1E1E;
+  border: none;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+button:focus {
+  outline: none;
+}
