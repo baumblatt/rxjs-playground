@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {empty} from 'rxjs/observable/empty';
+import {from} from 'rxjs/observable/from';
+import {interval} from 'rxjs/observable/interval';
+import {of} from 'rxjs/observable/of';
 
 import {Console} from './utils/console';
 import {Consumer} from './utils/consumer';
@@ -35,11 +38,18 @@ export class AppComponent {
     // Clear the output
     this.console.clear();
 
-    // an empty observable
-    const observable$ = empty();
+
+    // Empty observable: [|]
+    const empty$ = empty();
+    // Of observable: [1|]
+    const of$ = of(1);
+    // From observable: [1234|]
+    const from$ = from([1, 2, 3, 4]);
+    // Interval observable: [-1-2-3-4-5-6...]
+    const interval$ = interval(1000);
 
     // subscribe
-    const subscription = observable$.subscribe(this.consumer);
+    const subscription = empty$.subscribe(this.consumer);
 
     // unsubscribe
     setTimeout(() => subscription.unsubscribe(), 5000);
