@@ -40,6 +40,26 @@ export class AppComponent implements OnInit {
     // Clear the output
     this.output$.next('');
 
+    /**
+     * My Empty Observable.
+     */
+    // const myEmpty$ =
+
+    /**
+     * My Of Observable.
+     */
+    //  const myOf$ =
+
+    /**
+     * My From Observable.
+     */
+    // const myFrom$ =
+
+    /**
+     * My Interval Observable.
+     */
+    // const myInterval$ =
+
     // Empty observable: [|]
     const empty$ = empty();
     // Of observable: [1|]
