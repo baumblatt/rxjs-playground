@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/observable/of';
-
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
+
+import {empty} from 'rxjs/observable/empty';
+import {from} from 'rxjs/observable/from';
+import {interval} from 'rxjs/observable/interval';
+import {of} from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-root',
@@ -44,9 +44,7 @@ export class AppComponent implements OnInit {
     /**
      * My Empty Observable.
      */
-    const myEmpty$ = Observable.create((observer) => {
-      observer.complete();
-    });
+    const myEmpty$ = Observable.create((observer) => observer.complete());
 
     /**
      * My Of Observable factory.
@@ -57,11 +55,6 @@ export class AppComponent implements OnInit {
     });
 
     /**
-     * My Of Observable.
-     */
-    const myOf$ = myOf(1);
-
-    /**
      * My From Observable factory.
      */
     const myFrom = (events: any[]) => Observable.create((observer) => {
@@ -70,44 +63,28 @@ export class AppComponent implements OnInit {
     });
 
     /**
-     * My From Observable factory.
-     */
-    const myFrom$ = myFrom([1, 2, 3, 4]);
-
-    /**
-     * My From Observable factory.
+     * My Interval Observable factory.
      */
     const myInterval = (millis: number) => Observable.create((observer) => {
-      let counter = 1;
-      let interval;
-
-      interval = window.setInterval(() => {
+      let counter = 0;
+      const tearDown = window.setInterval(() => {
         this.println('interval-' + counter);
         observer.next('observer-' + counter++);
       }, millis);
-
-      return () => {
-        this.println('cleared');
-        window.clearInterval(interval);
-      };
+      return () => window.clearInterval(tearDown);
     });
 
-    /**
-     * My From Observable factory.
-     */
-    const myInterval$ = myInterval(1000);
-
     // Empty observable: [|]
-    const empty$ = Observable.empty();
+    const empty$ = empty();
     // Of observable: [1|]
-    const of$ = Observable.of(1);
+    const of$ = of(1);
     // From observable: [1234|]
-    const from$ = Observable.from([1, 2, 3, 4]);
+    const from$ = from([1, 2, 3, 4]);
     // Interval observable: [-1-2-3-4-5-6...]
-    const interval$ = Observable.interval(1000);
+    const interval$ = interval(1000);
 
     // subscribe
-    const subscription = myInterval$.subscribe(this.observer);
+    const subscription = myInterval(1000).subscribe(this.observer);
 
     // unsubscribe
     setTimeout(() => subscription.unsubscribe(), 5000);
