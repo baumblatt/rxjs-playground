@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/observable/of';
-
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+
+import {empty} from 'rxjs/observable/empty';
+import {from} from 'rxjs/observable/from';
+import {interval} from 'rxjs/observable/interval';
+import {of} from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-root',
@@ -41,15 +40,14 @@ export class AppComponent implements OnInit {
     // Clear the output
     this.output$.next('');
 
-
     // Empty observable: [|]
-    const empty$ = Observable.empty();
+    const empty$ = empty();
     // Of observable: [1|]
-    const of$ = Observable.of(1);
+    const of$ = of(1);
     // From observable: [1234|]
-    const from$ = Observable.from([1, 2, 3, 4]);
+    const from$ = from([1, 2, 3, 4]);
     // Interval observable: [-1-2-3-4-5-6...]
-    const interval$ = Observable.interval(1000);
+    const interval$ = interval(1000);
 
     // subscribe
     const subscription = empty$.subscribe(this.observer);
