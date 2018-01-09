@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {empty} from 'rxjs/observable/empty';
+import {Observable} from 'rxjs/Observable';
+import {interval} from 'rxjs/observable/interval';
 
 import {Console} from './utils/console';
 import {Consumer} from './utils/consumer';
@@ -43,7 +44,17 @@ export class AppComponent {
      * b) The hold exercise:
      * Reuse the component producer in your observable.
      */
-    const observable$ = empty();
+    const observable$ = Observable.create((observer) => {
+      // cold answer
+      const coldProducer = new Producer();
+      // hot answer
+      const hotProducer = this.producer;
+
+      // the ticker observable
+      const inner = interval(1000);
+
+      return inner.subscribe(() => observer.next(coldProducer.tick));
+    });
 
     // subscribe
     const subscription = observable$.subscribe(this.consumer);
