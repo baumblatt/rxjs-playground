@@ -5,11 +5,9 @@ import {from} from 'rxjs/observable/from';
 import {interval} from 'rxjs/observable/interval';
 import {of} from 'rxjs/observable/of';
 
-
 import {Console} from './utils/console';
 import {Consumer} from './utils/consumer';
 import {Producer} from './utils/producer';
-
 
 @Component({
   selector: 'app-root',
