@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import {empty} from 'rxjs/observable/empty';
 import {from} from 'rxjs/observable/from';
 import {interval} from 'rxjs/observable/interval';
@@ -38,6 +39,38 @@ export class AppComponent {
     // Clear the output
     this.console.clear();
 
+    /**
+     * My Empty Observable.
+     */
+    const myEmpty$ = () => Observable.create((observer) => observer.complete());
+
+    /**
+     * My Of Observable factory.
+     */
+    const myOf = (event) => Observable.create((observer) => {
+      observer.next(event);
+      observer.complete();
+    });
+
+    /**
+     * My From Observable factory.
+     */
+    const myFrom = (events: any[]) => Observable.create((observer) => {
+      events.forEach((event) => observer.next(event));
+      observer.complete();
+    });
+
+    /**
+     * My Interval Observable factory.
+     */
+    const myInterval = (millis: number) => Observable.create((observer) => {
+      let counter = 0;
+      const tearDown = window.setInterval(() => {
+        this.println('interval-' + counter);
+        observer.next('observer-' + counter++);
+      }, millis);
+      return () => window.clearInterval(tearDown);
+    });
 
     // Empty observable: [|]
     const empty$ = empty();
