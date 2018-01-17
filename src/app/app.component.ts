@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     /**
      * My Empty Observable.
      */
-    const myEmpty$ = Observable.create((observer) => observer.complete());
+    const myEmpty$ = () => Observable.create((observer) => observer.complete());
 
     /**
      * My Of Observable factory.
