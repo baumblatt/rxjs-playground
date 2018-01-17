@@ -42,7 +42,7 @@ export class AppComponent {
     /**
      * My Empty Observable.
      */
-    const myEmpty$ = () => Observable.create((observer) => observer.complete());
+    const myEmpty = () => Observable.create((observer) => observer.complete());
 
     /**
      * My Of Observable factory.
@@ -66,8 +66,8 @@ export class AppComponent {
     const myInterval = (millis: number) => Observable.create((observer) => {
       let counter = 0;
       const tearDown = window.setInterval(() => {
-        this.println('interval-' + counter);
-        observer.next('observer-' + counter++);
+        this.console.println('interval: ' + counter);
+        observer.next(counter++);
       }, millis);
       return () => window.clearInterval(tearDown);
     });
@@ -82,7 +82,7 @@ export class AppComponent {
     const interval$ = interval(1000);
 
     // subscribe
-    const subscription = empty$.subscribe(this.consumer);
+    const subscription = myInterval(1000).subscribe(this.consumer);
 
     // unsubscribe
     setTimeout(() => subscription.unsubscribe(), 5000);
