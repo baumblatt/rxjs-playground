@@ -1,5 +1,5 @@
 /**
- * A producer that produce number thou
+ * A producer that produce numbers.
  */
 export class Producer {
   /**
