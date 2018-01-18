@@ -28,7 +28,6 @@ export class AppComponent {
   constructor() {
     // create the consumer
     this.consumer = new Consumer('consumer', this.console);
-    setTimeout(() => this.producer.finish(), 15000);
   }
 
   run() {
