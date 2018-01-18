@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {interval} from 'rxjs/observable/interval';
 
 import {Console} from './utils/console';
 import {Consumer} from './utils/consumer';
@@ -30,6 +28,7 @@ export class AppComponent {
   constructor() {
     // create the consumer
     this.consumer = new Consumer('consumer', this.console);
+    setTimeout(() => this.producer.finish(), 15000);
   }
 
   run() {
@@ -47,20 +46,7 @@ export class AppComponent {
      * c) Enhance the producer moving the logic below using subject
      * exposing the new producer as an observable.
      */
-    const observable$ = Observable.create((observer) => {
-      // cold answer
-      const coldProducer = new Producer();
-      // hot answer
-      const hotProducer = this.producer;
-
-      // the ticker observable
-      const inner = interval(1000);
-
-      return inner.subscribe(() => observer.next(coldProducer.tick));
-    });
-
-    // subscribe
-    const subscription = observable$.subscribe(this.consumer);
+    const subscription = this.producer.tick$.subscribe(this.consumer);
 
     // unsubscribe
     setTimeout(() => subscription.unsubscribe(), 5000);
