@@ -43,6 +43,9 @@ export class AppComponent {
      *
      * b) The hold exercise:
      * Reuse the component producer in your observable.
+     *
+     * c) Enhance the producer moving the logic below using subject
+     * exposing the new producer as an observable.
      */
     const observable$ = Observable.create((observer) => {
       // cold answer
