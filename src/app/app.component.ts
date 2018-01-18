@@ -35,7 +35,17 @@ export class AppComponent {
     // Clear the output
     this.console.clear();
 
-    // an empty observable
+    /**
+     * a) The cold exercise:
+     * Replace the empty observable with a new observable that
+     * wrap a new branded producer ticking it every second.
+     *
+     * b) The hold exercise:
+     * Reuse the component producer in your observable.
+     */
+
+
+      // an empty observable
     const observable$ = empty();
 
     // subscribe
