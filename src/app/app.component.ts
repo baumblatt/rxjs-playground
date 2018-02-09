@@ -40,24 +40,24 @@ export class AppComponent {
     this.console.clear();
 
     /**
-     * My Empty Observable.
+     * My Empty Observable factory.
      */
-    // const myEmpty$ =
+    // const myEmpty =
 
     /**
-     * My Of Observable.
+     * My Of Observable factory.
      */
-    //  const myOf$ =
+    //  const myOf =
 
     /**
-     * My From Observable.
+     * My From Observable factory.
      */
-    // const myFrom$ =
+    // const myFrom =
 
     /**
-     * My Interval Observable.
+     * My Interval Observable factory.
      */
-      // const myInterval$ =
+      // const myInterval =
 
       // Empty observable: [|]
     const empty$ = empty();
