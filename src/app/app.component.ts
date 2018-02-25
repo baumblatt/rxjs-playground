@@ -40,22 +40,26 @@ export class AppComponent {
     this.console.clear();
 
     /**
-     * My Empty Observable factory.
+     * Clone the rjxs/observable/empty with your own code.
+     * Marble Diagram: |
      */
     // const myEmpty =
 
     /**
-     * My Of Observable factory.
+     * Clone the rjxs/observable/of with your own code.
+     * Marble Diagram: [1|]
      */
     //  const myOf =
 
     /**
-     * My From Observable factory.
+     * Clone the rjxs/observable/from with your own code.
+     * Marble Diagram: [1234|]
      */
     // const myFrom =
 
     /**
-     * My Interval Observable factory.
+     * Clone the rjxs/observable/interval with your own code.
+     * Marble Diagram: [-1-2-3-4-5-6...]
      */
       // const myInterval =
 
