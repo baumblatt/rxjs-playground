@@ -37,12 +37,14 @@ export class AppComponent {
     this.console.clear();
 
     /**
-     * My Empty Observable factory.
+     * Clone the rjxs/observable/empty with your own code.
+     * Marble Diagram: |
      */
     const myEmpty = () => Observable.create((observer: Observer<any>) => observer.complete());
 
     /**
-     * My Of Observable factory.
+     * Clone the rjxs/observable/of with your own code.
+     * Marble Diagram: [1|]
      */
     const myOf = (event) => Observable.create((observer: Observer<any>) => {
       observer.next(event);
@@ -50,7 +52,8 @@ export class AppComponent {
     });
 
     /**
-     * My From Observable factory.
+     * Clone the rjxs/observable/from with your own code.
+     * Marble Diagram: [1234|]
      */
     const myFrom = (events: any[]) => Observable.create((observer: Observer<any>) => {
       events.forEach((event) => observer.next(event));
@@ -58,7 +61,8 @@ export class AppComponent {
     });
 
     /**
-     * My Interval Observable factory.
+     * Clone the rjxs/observable/interval with your own code.
+     * Marble Diagram: [-1-2-3-4-5-6...]
      */
     const myInterval = (millis: number) => Observable.create((observer: Observer<any>) => {
       let counter = 0;
