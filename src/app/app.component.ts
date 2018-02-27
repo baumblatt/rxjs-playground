@@ -46,7 +46,7 @@ export class AppComponent {
      * Clone the rjxs/observable/of with your own code.
      * Marble Diagram: [1|]
      */
-    const myOf = (event) => Observable.create((observer: Observer<any>) => {
+    const myOf = (event: any) => Observable.create((observer: Observer<any>) => {
       observer.next(event);
       observer.complete();
     });
@@ -64,13 +64,13 @@ export class AppComponent {
      * Clone the rjxs/observable/interval with your own code.
      * Marble Diagram: [-1-2-3-4-5-6...]
      */
-    const myInterval = (millis: number) => Observable.create((observer: Observer<any>) => {
+    const myInterval = (millis: number) => Observable.create((observer: Observer<number>) => {
       let counter = 0;
-      const tearDown = setInterval(() => {
+      const teardown = setInterval(() => {
         this.console.println('interval: ' + counter);
         observer.next(counter++);
       }, millis);
-      return () => clearInterval(tearDown);
+      return () => clearInterval(teardown);
     });
 
     // Empty observable: [|]
@@ -88,6 +88,5 @@ export class AppComponent {
 
     // unsubscribe
     setTimeout(() => subscription.unsubscribe(), 5000);
-    this.console.println('------------');
   }
 }
