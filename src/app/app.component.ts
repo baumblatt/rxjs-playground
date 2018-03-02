@@ -37,15 +37,8 @@ export class AppComponent {
     this.console.clear();
 
     /**
-     * a) The cold exercise:
-     * Replace the empty observable with a new observable that
-     * wrap a new branded producer ticking it every second.
-     *
-     * b) The hold exercise:
-     * Reuse the component producer in your observable.
-     *
-     * c) Enhance the producer moving the logic below using subject
-     * exposing the new producer as an observable.
+     * a) Encapsulate the ticking logic with interval inside producer using Subject.
+     * b) Subscribe your producer with two consumers concurrently.
      */
     const observable$ = Observable.create((observer) => {
       // cold answer
@@ -56,7 +49,7 @@ export class AppComponent {
       // the ticker observable
       const inner = interval(1000);
 
-      return inner.subscribe(() => observer.next(coldProducer.tick));
+      return inner.subscribe(() => observer.next(hotProducer.tick));
     });
 
     // subscribe
