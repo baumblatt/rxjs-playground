@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs/Observable';
 import {interval} from 'rxjs/observable/interval';
+import {Observer} from 'rxjs/Observer';
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -25,7 +26,6 @@ export class Producer {
   constructor() {
     this._tick = 0;
     this._subject = new Subject<number>();
-
     this.start();
   }
 
@@ -50,8 +50,9 @@ export class Producer {
   }
 
   /**
-   * Return the stream of ticks.
-   * @returns {Observable<number>}
+   * Subscribe to this producer.
+   * @param {Observer<number>} observer the observer
+   * @returns {Subscription} the subscription.
    */
   get tick$(): Observable<number> {
     return this._subject.asObservable();

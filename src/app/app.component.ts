@@ -27,7 +27,7 @@ export class AppComponent {
 
   constructor() {
     // create the consumer
-    this.consumer = new Consumer('consumer', this.console);
+    this.consumer = new Consumer('consumer 1', this.console);
     setTimeout(() => this.producer.finish(), 15000);
   }
 
@@ -36,19 +36,13 @@ export class AppComponent {
     this.console.clear();
 
     /**
-     * a) The cold exercise:
-     * Replace the empty observable with a new observable that
-     * wrap a new branded producer ticking it every second.
-     *
-     * b) The hold exercise:
-     * Reuse the component producer in your observable.
-     *
-     * c) Enhance the producer moving the logic below using subject
-     * exposing the new producer as an observable.
+     * a) Encapsulate the ticking logic with interval inside producer using Subject.
      */
-    const subscription = this.producer.tick$.subscribe(this.consumer);
+    const subscription1 = this.producer.tick$.subscribe(this.consumer);
+    const subscription2 = this.producer.tick$.subscribe(new Consumer('consumer 2', this.console));
 
     // unsubscribe
-    setTimeout(() => subscription.unsubscribe(), 5000);
+    setTimeout(() => subscription1.unsubscribe(), 4000);
+    setTimeout(() => subscription2.unsubscribe(), 6000);
   }
 }
