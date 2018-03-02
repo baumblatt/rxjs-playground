@@ -37,6 +37,7 @@ export class AppComponent {
 
     /**
      * a) Encapsulate the ticking logic with interval inside producer using Subject.
+     * b) Subscribe your producer with two consumers concurrently.
      */
     const subscription1 = this.producer.tick$.subscribe(this.consumer);
     const subscription2 = this.producer.tick$.subscribe(new Consumer('consumer 2', this.console));
