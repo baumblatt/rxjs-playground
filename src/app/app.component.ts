@@ -41,8 +41,6 @@ export class AppComponent {
      * b) Subscribe your producer with two consumers concurrently.
      */
     const observable$ = Observable.create((observer) => {
-      // cold answer
-      const coldProducer = new Producer();
       // hot answer
       const hotProducer = this.producer;
 
