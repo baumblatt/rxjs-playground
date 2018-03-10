@@ -1,7 +1,6 @@
 import {Observable} from 'rxjs/Observable';
-import {from} from 'rxjs/observable/from';
 import {interval} from 'rxjs/observable/interval';
-import {concat, delay, filter, map, pairwise} from 'rxjs/operators';
+import {filter, map, pairwise} from 'rxjs/operators';
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -35,15 +34,12 @@ export class Producer {
    * Start the production of ticks.
    */
   private start() {
-    this._subscription = from([0, 1, 1]).pipe(
-      delay(3000),
-      concat(interval(1000).pipe(
-        filter(() => !!this._subject.observers.length),
-        map(() => this._tick),
-        pairwise(),
-        map(ticks => ticks[0] + ticks[1])
-      ))
-    ).subscribe(tick => {
+    this._subscription = interval(1000).pipe(
+      filter(() => !!this._subject.observers.length),
+      map(() => this._tick),
+      pairwise(),
+      map(ticks => ticks[0] + ticks[1])
+    ).subscribe((tick) => {
       this._subject.next(this._tick = tick);
     });
   }
