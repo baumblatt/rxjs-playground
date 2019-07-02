@@ -1,9 +1,6 @@
 import {Component} from '@angular/core';
 
-import {empty} from 'rxjs/observable/empty';
-import {from} from 'rxjs/observable/from';
-import {interval} from 'rxjs/observable/interval';
-import {of} from 'rxjs/observable/of';
+import {empty, from, interval, of} from 'rxjs';
 
 import {Console} from './utils/console';
 import {Consumer} from './utils/consumer';
